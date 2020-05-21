@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>test_project_api.Service</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\test-project-api.Entity\test-project-api.Entity.csproj" />
+    <ProjectReference Include="..\test-project-api.Repositories\test-project-api.Repositories.csproj" />
+  </ItemGroup>
+</Project>

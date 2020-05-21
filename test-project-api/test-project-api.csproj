@@ -10,5 +10,17 @@
     <ProjectReference Include="..\test-project-api.Entity\test-project-api.Entity.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+    <ProjectReference Include="..\test-project-api.Service\test-project-api.Service.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\test-project-api.Repositories\test-project-api.Repositories.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="RequestObject\" />
   </ItemGroup>
 </Project>
