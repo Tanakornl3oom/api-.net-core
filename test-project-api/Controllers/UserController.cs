@@ -30,11 +30,29 @@ namespace test_project_api.Controllers
             return _IQueryUser.getUsers();
         }
 
+        [HttpGet("{id}")]
+        public User Get(int id)
+        {
+            return _IQueryUser.getUserById(id);
+        }
+
         [HttpPost]
         public User AddUser(UserRequestDto request)
         {
 
             return _IQueryUser.addUser(request.name);
+        }
+
+        [HttpPut("{id}")]
+        public User Update(int id, UserRequestDto request)
+        {
+            return _IQueryUser.updateUser(id,request.name);
+        }
+
+        [HttpDelete("{id}")]
+        public User delete(int id)
+        {
+            return _IQueryUser.deleteUser(id);
         }
     }
 }

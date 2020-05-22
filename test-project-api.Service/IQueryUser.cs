@@ -8,5 +8,8 @@ namespace test_project_api.Service
     {
         IEnumerable<User> getUsers();
         User addUser(string name);
+        User getUserById(int id);
+        User updateUser(int id,string name);
+        User deleteUser(int id);
     }
 }

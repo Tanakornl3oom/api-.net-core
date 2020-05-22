@@ -5,9 +5,9 @@ using test_project_api.Enitity.models;
 
 namespace test_project_api.Enitity
 {
-    public class UserContext : DbContext
+    public class UserContext : DbContext 
     {
-      
+
         public DbSet<User> users {get; set;}
         public DbSet<Role> roles {get; set;}
         public DbSet<UsersRole> UsersRoles { get; set; }
@@ -15,5 +15,6 @@ namespace test_project_api.Enitity
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
                 => optionsBuilder.UseNpgsql("User ID = postgres;Host=localhost;Port=5432;Database=test_project;Password=postgres;");
+
     }
 }

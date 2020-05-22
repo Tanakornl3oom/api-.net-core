@@ -13,7 +13,7 @@ namespace test_project_api.Repositores
     {
         private UserContext context;
 
-        public UserRepository(UserContext context)
+        public UserRepository(UserContext context) 
         {
             this.context = context;
         }
@@ -30,12 +30,15 @@ namespace test_project_api.Repositores
 
         public User Delete(int id)
         {
-            throw new System.NotImplementedException();
+            User user = context.users.Find(id);
+            context.Entry(user).State = EntityState.Deleted;
+            context.SaveChanges();
+            return user;
         }
 
         public User Get(int id)
         {
-            throw new System.NotImplementedException();
+            return context.users.Find(id);
         }
 
         public IEnumerable<User> GetAll()
@@ -43,9 +46,15 @@ namespace test_project_api.Repositores
             return context.users.AsEnumerable();
         }
 
-        public User Update(string name)
+        public User Update(int id ,string name)
         {
-            throw new System.NotImplementedException();
+            User user = context.users.Find(id);
+            user.Name = name;
+
+            context.Entry(user).State = EntityState.Modified;
+            context.SaveChanges();
+            return user;
+
         }
     }
 }
