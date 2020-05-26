@@ -14,6 +14,8 @@ using Microsoft.Extensions.Logging;
 using test_project_api.Entity;
 using test_project_api.Repositores;
 using test_project_api.Service;
+using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.OpenApi.Models;
 
 namespace test_project_api
 {
@@ -37,6 +39,15 @@ namespace test_project_api
             services.AddSingleton<IUserRepository, UserRepository>();
             services.AddSingleton<IQueryUser, QueryUser>();
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Swagger With Asp.net core",
+                    Version = "v1",
+                });
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +61,13 @@ namespace test_project_api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             app.UseAuthorization();
 

@@ -9,26 +9,26 @@ namespace test_project_api.Service
     public class QueryUser : IQueryUser
     {
 
-    private readonly IUserRepository _iUserRepository;
+    private readonly IUserRepository _userRepository;
 
     public QueryUser(IUserRepository userIRepository)
         {
-            _iUserRepository = userIRepository;
+            _userRepository = userIRepository;
         }
 
         public User addUser(string name)
         {
-            return _iUserRepository.Add(name);
+            return _userRepository.Add(name);
         }
 
         public User deleteUser(int id)
         {
-            return _iUserRepository.Delete(id);
+            return _userRepository.Delete(id);
         }
 
         public User getUserById(int id)
         {
-            var user = _iUserRepository.Get(id);
+            var user = _userRepository.Get(id);
             if (user == null)
             {
                 throw new ArgumentException("user id not forund");
@@ -38,12 +38,12 @@ namespace test_project_api.Service
 
         public IEnumerable<User> getUsers()
         {
-            return _iUserRepository.GetAll();
+            return _userRepository.GetAll();
         }
 
         public User updateUser(int id,string name)
         {
-            return _iUserRepository.Update(id , name);
+            return _userRepository.Update(id , name);
         }
     }
 }

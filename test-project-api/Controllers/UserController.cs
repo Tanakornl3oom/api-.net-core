@@ -25,9 +25,9 @@ namespace test_project_api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<User> Get()
+        public IActionResult Get()
         {
-            return _IQueryUser.getUsers();
+            return StatusCode(StatusCodes.Status200OK, _IQueryUser.getUsers()); 
         }
 
         [HttpGet("{id}")]
