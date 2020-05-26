@@ -11,7 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using test_project_api.Enitity;
+using test_project_api.Entity;
 using test_project_api.Repositores;
 using test_project_api.Service;
 
@@ -34,8 +34,8 @@ namespace test_project_api
             //services.AddDbContext<UserContext>();
             services.AddEntityFrameworkNpgsql().AddDbContext<UserContext>();
 
-            services.AddTransient<UserIRepository, UserRepository>();
-            services.AddTransient<IQueryUser, QueryUser>();
+            services.AddSingleton<IUserRepository, UserRepository>();
+            services.AddSingleton<IQueryUser, QueryUser>();
 
         }
 

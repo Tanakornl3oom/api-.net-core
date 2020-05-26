@@ -4,9 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using test_project_api.Enitity.models;
+using test_project_api.Entity.models;
 using test_project_api.Service;
 using test_project_api.RequestObject;
+using Microsoft.AspNetCore.Http;
 
 namespace test_project_api.Controllers
 {
@@ -26,14 +27,24 @@ namespace test_project_api.Controllers
         [HttpGet]
         public IEnumerable<User> Get()
         {
-
             return _IQueryUser.getUsers();
         }
 
         [HttpGet("{id}")]
-        public User Get(int id)
+        public IActionResult Get(int id)
         {
-            return _IQueryUser.getUserById(id);
+            try
+            {
+                var user = _IQueryUser.getUserById(id);
+               
+                Console.WriteLine("user: {0} {1}", user, user == null);
+                return StatusCode(StatusCodes.Status200OK, user);
+            }
+            catch (ArgumentException ex)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, ex.Message);
+            }
+
         }
 
         [HttpPost]

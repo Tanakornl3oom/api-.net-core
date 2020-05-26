@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using test_project_api.Enitity.models;
+using test_project_api.Entity.models;
 
 namespace test_project_api.Repositores
 { 
-    public interface UsersRoleIRepository
+    public interface IUsersRoleRepository
     {
         IEnumerable<UsersRole> GetAll();
         UsersRole Get(int id);

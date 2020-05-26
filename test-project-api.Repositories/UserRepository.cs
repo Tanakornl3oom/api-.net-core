@@ -3,19 +3,21 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Dapper;
 using Microsoft.EntityFrameworkCore;
-using test_project_api.Enitity;
-using test_project_api.Enitity.models;
+using test_project_api.Entity;
+using test_project_api.Entity.models;
+
 
 namespace test_project_api.Repositores
 {
-    public class UserRepository : UserIRepository
+    public class UserRepository : IUserRepository
     {
         private UserContext context;
 
-        public UserRepository(UserContext context) 
+        public UserRepository() 
         {
-            this.context = context;
+            context = new UserContext();
         }
 
         public User Add(string name)
@@ -38,12 +40,20 @@ namespace test_project_api.Repositores
 
         public User Get(int id)
         {
-            return context.users.Find(id);
+            using (var connection = DatabaseContext.Instance)
+            {
+                return connection.QuerySingleOrDefault<User>("select * from users where users.id=@Id", new { Id = id });
+            }
+            //return context.users.Find(id);
         }
 
         public IEnumerable<User> GetAll()
+
         {
-            return context.users.AsEnumerable();
+            using (var connection = DatabaseContext.Instance)
+            {   
+                return connection.Query<User>("select * from users");
+            }
         }
 
         public User Update(int id ,string name)

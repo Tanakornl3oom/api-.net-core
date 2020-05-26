@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using test_project_api.Enitity.models;
+using test_project_api.Entity.models;
 
 namespace test_project_api.Service
 {

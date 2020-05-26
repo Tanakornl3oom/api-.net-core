@@ -1,6 +1,7 @@
 ﻿
+using System;
 using System.Collections.Generic;
-using test_project_api.Enitity.models;
+using test_project_api.Entity.models;
 using test_project_api.Repositores;
 
 namespace test_project_api.Service
@@ -8,36 +9,41 @@ namespace test_project_api.Service
     public class QueryUser : IQueryUser
     {
 
-    private readonly UserIRepository _userIRepository;
+    private readonly IUserRepository _iUserRepository;
 
-    public QueryUser(UserIRepository userIRepository)
+    public QueryUser(IUserRepository userIRepository)
         {
-            _userIRepository = userIRepository;
+            _iUserRepository = userIRepository;
         }
 
         public User addUser(string name)
         {
-            return _userIRepository.Add(name);
+            return _iUserRepository.Add(name);
         }
 
         public User deleteUser(int id)
         {
-            return _userIRepository.Delete(id);
+            return _iUserRepository.Delete(id);
         }
 
         public User getUserById(int id)
         {
-            return _userIRepository.Get(id);
+            var user = _iUserRepository.Get(id);
+            if (user == null)
+            {
+                throw new ArgumentException("user id not forund");
+            }
+            return user;
         }
 
         public IEnumerable<User> getUsers()
         {
-            return _userIRepository.GetAll();
+            return _iUserRepository.GetAll();
         }
 
         public User updateUser(int id,string name)
         {
-            return _userIRepository.Update(id , name);
+            return _iUserRepository.Update(id , name);
         }
     }
 }

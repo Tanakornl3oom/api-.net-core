@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace test_project_api.Enitity.models
+namespace test_project_api.Entity.models
 {
     [Table("users", Schema = "public")]
     public class User

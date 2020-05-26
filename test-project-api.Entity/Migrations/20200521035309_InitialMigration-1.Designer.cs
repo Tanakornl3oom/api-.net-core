@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using test_project_api.Enitity;
+using test_project_api.Entity;
 
 namespace test_project_api.Entity.Migrations
 {
@@ -21,7 +21,7 @@ namespace test_project_api.Entity.Migrations
                 .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            modelBuilder.Entity("test_project_api.Enitity.models.User", b =>
+            modelBuilder.Entity("test_project_api.Entity.models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

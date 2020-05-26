@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using test_project_api.Enitity;
+using test_project_api.Entity;
 
 namespace test_project_api.Entity.Migrations
 {
@@ -21,7 +21,7 @@ namespace test_project_api.Entity.Migrations
                 .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            modelBuilder.Entity("test_project_api.Enitity.models.Role", b =>
+            modelBuilder.Entity("test_project_api.Entity.models.Role", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -39,7 +39,7 @@ namespace test_project_api.Entity.Migrations
                     b.ToTable("role","public");
                 });
 
-            modelBuilder.Entity("test_project_api.Enitity.models.User", b =>
+            modelBuilder.Entity("test_project_api.Entity.models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -62,7 +62,7 @@ namespace test_project_api.Entity.Migrations
                     b.ToTable("users","public");
                 });
 
-            modelBuilder.Entity("test_project_api.Enitity.models.UsersRole", b =>
+            modelBuilder.Entity("test_project_api.Entity.models.UsersRole", b =>
                 {
                     b.Property<int>("Id")
                         .HasColumnName("id")
@@ -85,15 +85,15 @@ namespace test_project_api.Entity.Migrations
                     b.ToTable("users_role","public");
                 });
 
-            modelBuilder.Entity("test_project_api.Enitity.models.UsersRole", b =>
+            modelBuilder.Entity("test_project_api.Entity.models.UsersRole", b =>
                 {
-                    b.HasOne("test_project_api.Enitity.models.Role", "role")
+                    b.HasOne("test_project_api.Entity.models.Role", "role")
                         .WithMany()
                         .HasForeignKey("Role")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("test_project_api.Enitity.models.User", "user")
+                    b.HasOne("test_project_api.Entity.models.User", "user")
                         .WithMany()
                         .HasForeignKey("User")
                         .OnDelete(DeleteBehavior.Cascade)
