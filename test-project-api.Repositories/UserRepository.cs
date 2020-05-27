@@ -20,14 +20,22 @@ namespace test_project_api.Repositores
             context = new UserContext();
         }
 
-        public User Add(string name)
+        public void Add(string name)
         {
-            User user = new User();
-            user.Name = name;
+            using (var connection = DatabaseContext.Instance)
+            {
+                var result = connection.Execute("insert into users (name) values (@Name)", new { Name = name });
+                Console.WriteLine("user: {0}", result);
 
-            context.Entry(user).State = EntityState.Added;
-            context.SaveChanges();
-            return user;
+            }
+
+
+            //User user = new User();
+            //user.Name = name;
+
+            //context.Entry(user).State = EntityState.Added;
+            //context.SaveChanges();
+            //return user;
         }
 
         public User Delete(int id)

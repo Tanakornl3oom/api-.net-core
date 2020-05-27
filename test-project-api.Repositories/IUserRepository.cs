@@ -7,7 +7,7 @@ namespace test_project_api.Repositores
     {
         IEnumerable<User> GetAll();
         User Get(int id);
-        User Add(string name);
+        void Add(string name);
         User Update(int id ,string name);
         User Delete(int id);
     }

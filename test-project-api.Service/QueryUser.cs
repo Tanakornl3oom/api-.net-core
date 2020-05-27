@@ -16,9 +16,9 @@ namespace test_project_api.Service
             _userRepository = userIRepository;
         }
 
-        public User addUser(string name)
+        public void addUser(string name)
         {
-            return _userRepository.Add(name);
+            _userRepository.Add(name);
         }
 
         public User deleteUser(int id)

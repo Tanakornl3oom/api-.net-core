@@ -48,10 +48,17 @@ namespace test_project_api.Controllers
         }
 
         [HttpPost]
-        public User AddUser(UserRequestDto request)
+        public IActionResult AddUser(UserRequestDto request)
         {
+            try
+            {
+                _IQueryUser.addUser(request.name);
+                return StatusCode(StatusCodes.Status201Created, "created user");
+            }catch(Exception ex)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, ex.Message);
+            }
 
-            return _IQueryUser.addUser(request.name);
         }
 
         [HttpPut("{id}")]
