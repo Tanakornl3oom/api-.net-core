@@ -21,9 +21,16 @@ namespace test_project_api.Service
             _userRepository.Add(name);
         }
 
-        public User deleteUser(int id)
+        public int deleteUser(int id)
         {
-            return _userRepository.Delete(id);
+            var result = _userRepository.Delete(id);
+            if (result == 1)
+            {
+                return id;
+            }else
+            {
+                throw new Exception("delete user id : "+id+" fail");
+            }
         }
 
         public User getUserById(int id)

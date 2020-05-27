@@ -10,6 +10,6 @@ namespace test_project_api.Service
         void addUser(string name);
         User getUserById(int id);
         User updateUser(int id,string name);
-        User deleteUser(int id);
+        int deleteUser(int id);
     }
 }

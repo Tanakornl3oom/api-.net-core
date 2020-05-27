@@ -38,12 +38,26 @@ namespace test_project_api.Repositores
             //return user;
         }
 
-        public User Delete(int id)
+        public int Delete(int id)
         {
-            User user = context.users.Find(id);
-            context.Entry(user).State = EntityState.Deleted;
-            context.SaveChanges();
-            return user;
+            //User user = context.users.Find(id);
+            //context.Entry(user).State = EntityState.Deleted;
+            //context.SaveChanges();
+            //return user;
+
+           
+
+            using (var connection = DatabaseContext.Instance)
+            {
+                var result = connection.Execute("delete from users where id = @Id",
+                    new
+                    {
+                        Id = id
+                    });
+               
+                    return result;
+            }
+
         }
 
         public User Get(int id)
@@ -66,12 +80,30 @@ namespace test_project_api.Repositores
 
         public User Update(int id ,string name)
         {
-            User user = context.users.Find(id);
-            user.Name = name;
+            //User user = context.users.Find(id);
+            //user.Name = name;
 
-            context.Entry(user).State = EntityState.Modified;
-            context.SaveChanges();
-            return user;
+            //context.Entry(user).State = EntityState.Modified;
+            //context.SaveChanges();
+            //return user;
+            var oldUser = new User() { Id = id, Name = name };
+
+            using (var connection = DatabaseContext.Instance)
+            {
+                var result = connection.Execute("update users (name) values (@Name) where id = @Id",
+                    new { oldUser.Name,
+                    oldUser.Id
+                    });
+                if(result == 1)
+                {
+                    return oldUser;
+                }
+                else
+                {
+                    throw new Exception("update user fail");
+                }
+
+            }
 
         }
     }

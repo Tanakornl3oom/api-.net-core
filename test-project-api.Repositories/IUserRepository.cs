@@ -9,6 +9,6 @@ namespace test_project_api.Repositores
         User Get(int id);
         void Add(string name);
         User Update(int id ,string name);
-        User Delete(int id);
+        int  Delete(int id);
     }
 }

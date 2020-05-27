@@ -62,15 +62,35 @@ namespace test_project_api.Controllers
         }
 
         [HttpPut("{id}")]
-        public User Update(int id, UserRequestDto request)
+        public IActionResult Update(int id, UserRequestDto request)
         {
-            return _IQueryUser.updateUser(id,request.name);
+
+            try
+            {
+                var user = _IQueryUser.updateUser(id, request.name);
+                return StatusCode(StatusCodes.Status200OK, user);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, ex.Message);
+            }
+           
         }
 
         [HttpDelete("{id}")]
-        public User delete(int id)
+        public IActionResult Delete(int id)
         {
-            return _IQueryUser.deleteUser(id);
+
+            try
+            {
+                var userId = _IQueryUser.deleteUser(id);
+                return StatusCode(StatusCodes.Status200OK, $"delete user id {userId}");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, ex.Message);
+
+            }
         }
     }
 }
