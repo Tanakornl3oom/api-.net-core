@@ -24,12 +24,21 @@ namespace test_project_api.Controllers
             _IQueryUser = queryUser;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Get()
         {
             return StatusCode(StatusCodes.Status200OK, _IQueryUser.getUsers()); 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
@@ -47,6 +56,11 @@ namespace test_project_api.Controllers
 
         }
 
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult AddUser(UserRequestDto request)
         {
@@ -61,6 +75,12 @@ namespace test_project_api.Controllers
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public IActionResult Update(int id, UserRequestDto request)
         {
@@ -77,6 +97,11 @@ namespace test_project_api.Controllers
            
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
